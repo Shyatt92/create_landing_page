@@ -1,5 +1,6 @@
 const scrape = require('website-scraper')
 const minify = require('minify')
+const tryToCatch = require('try-to-catch')
 const fsHelper = require('./fsHelper')
 const helper = require('./helper')
 
@@ -14,15 +15,13 @@ let options = {
 const htmlPath = `${options.directory}/index.html`
 
 let minifyOptions = {
-  html: {
-    collapseWhitespace: false,
-    conservativeCollapse: false,
+    collapseWhitespace: true,
+    conservativeCollapse: true,
     html5: true,
     //maxLineLength,
-    minifyCSS: false,
+    minifyCSS: true,
     minifyJS: false,
     removeEmptyElements: false,
-  }
 }
 
 //Remove any current directory with same name as options.directory
@@ -30,7 +29,7 @@ rmdirSync(options.directory, { recursive: true })
 console.log(`Deleted Directory: ${options.directory}`);
 
 scrape(options)
-  .then(result => {
+  .then(async result => {
     let html
 
     //Read .html file and save to html variable
@@ -53,8 +52,24 @@ scrape(options)
     console.log(`${styleCount} style tags moved to .css files`)
 
     const metaTags = helper.findTags(html, 'meta')
-    //metaTags.forEach(async tag => await minify(tag))
+    
+    let minified = []
+
     console.log(metaTags)
+
+    minified.push(minify.html(metaTags[0], minifyOptions))
+
+    // metaTags.forEach( async tag => {
+    //   await minify.html(tag, minifyOptions, (error, data) => {
+    //     if(error) {
+    //       console.log(error.message)
+    //     }
+    //     console.log(data)
+    //     minified.push(data)
+    //   })
+    // })
+    console.log(minified)
+    
 
     //Rewrite .html file with updated html
     fsHelper.writeFile(htmlPath, html)

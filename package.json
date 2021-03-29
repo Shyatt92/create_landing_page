@@ -1,7 +1,7 @@
 {
-  "name": "websitescraper",
+  "name": "createlandingpage",
   "version": "1.0.0",
-  "description": "Scrape all assets from given URL",
+  "description": "Create SEO landing page template from given URL",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +13,7 @@
     "cheerio": "^0.22.0",
     "html-format": "^1.0.1",
     "minify": "^7.0.1",
+    "try-to-catch": "^3.0.0",
     "website-scraper": "^4.2.3"
   }
 }

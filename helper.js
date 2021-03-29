@@ -37,7 +37,9 @@ const replaceTag = (data, styleObj) => {
 
 const findTags = (data, tag) => {
   const $ = cheerio.load(data)
-  const tags = $(tag).toString().split('>')
+  const found = $(tag).toString().split('>')
+
+  tags = found.map(element => element.concat('>'))
 
   return tags
 }
