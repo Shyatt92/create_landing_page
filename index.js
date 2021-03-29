@@ -20,7 +20,7 @@ let minifyOptions = {
     html5: true,
     //maxLineLength,
     minifyCSS: true,
-    minifyJS: false,
+    minifyJS: true,
     removeEmptyElements: false,
 }
 
@@ -29,7 +29,7 @@ rmdirSync(options.directory, { recursive: true })
 console.log(`Deleted Directory: ${options.directory}`);
 
 scrape(options)
-  .then(async result => {
+  .then(result => {
     let html
 
     //Read .html file and save to html variable
@@ -47,29 +47,18 @@ scrape(options)
       styleObj.filePath = `./css/custom-css${i}.css`
 
       fsHelper.writeFile(`${options.directory}/css/custom-css${i}.css`, styleObj.innerHTML)
-      html = helper.replaceTag(html, styleObj)
+      html = helper.replaceStyleTag(html, styleObj)
     }
     console.log(`${styleCount} style tags moved to .css files`)
 
-    const metaTags = helper.findTags(html, 'meta')
+    //Find all meta tags and minify each
+    html = helper.findMinifyReplaceTags(html, 'link', minifyOptions)
+    html = helper.findMinifyReplaceTags(html, 'meta', minifyOptions)
+    html = helper.findMinifyReplaceTags(html, 'head > script', minifyOptions)
     
-    let minified = []
-
-    console.log(metaTags)
-
-    minified.push(minify.html(metaTags[0], minifyOptions))
-
-    // metaTags.forEach( async tag => {
-    //   await minify.html(tag, minifyOptions, (error, data) => {
-    //     if(error) {
-    //       console.log(error.message)
-    //     }
-    //     console.log(data)
-    //     minified.push(data)
-    //   })
-    // })
-    console.log(minified)
-    
+    //Use html-format plugin to format html
+    html = helper.format(html)
+    console.log('Formatted HTML')
 
     //Rewrite .html file with updated html
     fsHelper.writeFile(htmlPath, html)

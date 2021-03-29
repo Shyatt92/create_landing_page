@@ -1,6 +1,11 @@
-.fusion-builder-live .fusion-builder-live-toolbar .fusion-toolbar-nav > li.fusion-branding .fusion-builder-logo-wrapper .fusiona-avada-logo {background: url( fonts/123-Internet-Avada-Logo.svg ) no-repeat center !important;
-				background-size: contain !important;
-				width: 30px;
-				height: 30px;}.fusion-builder-live .fusion-builder-live-toolbar .fusion-toolbar-nav > li.fusion-branding .fusion-builder-logo-wrapper .fusiona-avada-logo:before {
-					display: none;
-				}
+
+      .fusion-builder-live .fusion-builder-live-toolbar .fusion-toolbar-nav>li.fusion-branding .fusion-builder-logo-wrapper .fusiona-avada-logo {
+        background: url(fonts/123-Internet-Avada-Logo.svg ) no-repeat center !important;
+        background-size: contain !important;
+        width: 30px;
+        height: 30px;
+      }
+      .fusion-builder-live .fusion-builder-live-toolbar .fusion-toolbar-nav>li.fusion-branding .fusion-builder-logo-wrapper .fusiona-avada-logo:before {
+        display: none;
+      }
+    
