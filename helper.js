@@ -114,6 +114,28 @@ const findMinifyReplaceTags = (data, tag, minifyOptions = undefined) => {
   return data
 }
 
+const scriptCount = (data) => {
+  const $ = cheerio.load(data)
+  const count = $('script').not('[src]').not('[type="application/ld+json"]').length
+
+  return count
+}
+
+const findScripts = (data) => {
+  const $ = cheerio.load(data)
+
+  return $('script').not('[src]').not('[type="application/ld+json"]').html()
+}
+
+const replaceScripts = (data, src) => {
+  const $ = cheerio.load(data)
+
+  $('script').not('[src]').not('[type="application/ld+json"]').first().html('')
+  $('script').not('[src]').not('[type="application/ld+json"]').first().attr('src', src)
+
+  return $.html()
+}
+
 const requiredTags = (data) => {
   const $ = cheerio.load(data)
 
@@ -180,4 +202,4 @@ const addKeywords = (data, tag) => {
 }
 
 
-module.exports = { format, findStyle, countTags, replaceStyleTag, findAndRemoveTags, insertTags, findMinifyReplaceTags, requiredTags, addKeywords }
+module.exports = { format, findStyle, countTags, replaceStyleTag, findAndRemoveTags, insertTags, findMinifyReplaceTags, scriptCount, findScripts, replaceScripts, requiredTags, addKeywords }

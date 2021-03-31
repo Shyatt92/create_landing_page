@@ -1,0 +1,35 @@
+
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] .fusion-menu-element-list,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]>.avada-menu-mobile-menu-trigger,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] .fusion-megamenu-wrapper .fusion-megamenu-holder .fusion-megamenu .fusion-megamenu-submenu .fusion-megamenu-title {
+                        font-family: Cinzel;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] [class*="fusion-icon-"],
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] [class^="fusion-icon-"] {
+                        font-family: Cinzel !important;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item:focus-within>a .fusion-megamenu-icon {
+                        color: #65bc7b;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item:hover>a .fusion-megamenu-icon,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item.hover>a .fusion-megamenu-icon,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item:focus>a .fusion-megamenu-icon,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item:active>a .fusion-megamenu-icon,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item.current-menu-item>a .fusion-megamenu-icon {
+                        color: #65bc7b;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item.current-menu-ancestor>a .fusion-megamenu-icon {
+                        color: #65bc7b;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item.current-menu-parent>a .fusion-megamenu-icon {
+                        color: #65bc7b;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"]:not(.collapse-enabled) .fusion-menu-element-list>li.menu-item.expanded>a .fusion-megamenu-icon {
+                        color: #65bc7b;
+                      }
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] .custom-menu-search-dropdown:hover .fusion-main-menu-icon,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] .custom-menu-search-overlay:hover .fusion-menu-icon-search.trigger-overlay,
+                      .fusion-body .fusion-menu-element-wrapper[data-count="0"] .custom-menu-search-overlay:hover~.fusion-overlay-search {
+                        color: #65bc7b !important;
+                      }
+                    

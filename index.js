@@ -6,7 +6,7 @@ const helper = require('./helper')
 const { rmdirSync } = require('fs')
 
 let options = {
-  urls: ['https://corushotels.com/corus-hyde-park/accommodation/'],
+  urls: ['https://corushotels.com/burnham-beeches-hotel/dining/'],
   directory: './downloaded'
 }
 
@@ -48,6 +48,18 @@ scrape(options)
       html = helper.replaceStyleTag(html, styleObj)
     }
     console.log(`${styleCount} style tags moved to .css files`)
+
+    //Find and move scripts to .js files
+    const scripts = helper.scriptCount(html)
+    for(let i = 0; i < scripts; i++){
+      const script = helper.findScripts(html)
+      let src = `./js/custom-js${i+1}.js`
+
+      fsHelper.writeFile(`${options.directory}/js/custom-js${i+1}.js`, script)
+
+      html = helper.replaceScripts(html, src)
+    }
+    console.log(`${scripts} script tags moved to 'js files`)
 
     // Find all meta tags and minify each
     html = helper.findMinifyReplaceTags(html, 'link', minifyOptions)

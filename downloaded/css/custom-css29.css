@@ -1,0 +1,41 @@
+
+                                    .fusion-button.button-5 .fusion-button-text,
+                                    .fusion-button.button-5 i {
+                                      color: #000000;
+                                    }
+                                    .fusion-button.button-5 .fusion-button-icon-divider {
+                                      border-color: #000000;
+                                    }
+                                    .fusion-button.button-5:hover .fusion-button-text,
+                                    .fusion-button.button-5:hover i,
+                                    .fusion-button.button-5:focus .fusion-button-text,
+                                    .fusion-button.button-5:focus i,
+                                    .fusion-button.button-5:active .fusion-button-text,
+                                    .fusion-button.button-5:active {
+                                      color: #ffffff;
+                                    }
+                                    .fusion-button.button-5:hover .fusion-button-icon-divider,
+                                    .fusion-button.button-5:hover .fusion-button-icon-divider,
+                                    .fusion-button.button-5:active .fusion-button-icon-divider {
+                                      border-color: #ffffff;
+                                    }
+                                    .fusion-button.button-5:hover,
+                                    .fusion-button.button-5:focus,
+                                    .fusion-button.button-5:active {
+                                      border-color: #ffffff;
+                                      border-width: 1px;
+                                    }
+                                    .fusion-button.button-5 {
+                                      border-color: #ce9027;
+                                      border-width: 1px;
+                                      border-radius: 0px;
+                                    }
+                                    .fusion-button.button-5 {
+                                      background: transparent;
+                                    }
+                                    .fusion-button.button-5:hover,
+                                    .button-5:focus,
+                                    .fusion-button.button-5:active {
+                                      background: rgba(207, 145, 18, 0.91);
+                                    }
+                                  
