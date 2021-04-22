@@ -1,13 +1,17 @@
 const scrape = require('website-scraper')
 const fsHelper = require('./fsHelper')
 const helper = require('./helper')
+const prompt = require('prompt-sync')()
 
 // Remove Directory for Testing
 const { rmdirSync } = require('fs')
 
+const url = prompt('Enter URL: ')
+const downloadDirectory = prompt('Pleaser enter folder name to be saved to: ')
+
 let options = {
-  urls: ['https://corushotels.com/burnham-beeches-hotel/dining/'],
-  directory: './downloaded'
+  urls: [url],
+  directory: `/home/stephen/Downloads/${downloadDirectory}`
 }
 
 const htmlPath = `${options.directory}/index.html`
@@ -16,7 +20,6 @@ let minifyOptions = {
     collapseWhitespace: true,
     conservativeCollapse: true,
     html5: true,
-    //maxLineLength,
     minifyCSS: true,
     minifyJS: true,
     removeEmptyElements: false,
@@ -61,7 +64,7 @@ scrape(options)
     }
     console.log(`${scripts} script tags moved to 'js files`)
 
-    // Find all meta tags and minify each
+    // Find specified tags and minify each
     html = helper.findMinifyReplaceTags(html, 'link', minifyOptions)
     html = helper.findMinifyReplaceTags(html, 'meta', minifyOptions)
     html = helper.findMinifyReplaceTags(html, 'script', minifyOptions)
@@ -70,6 +73,7 @@ scrape(options)
     html = helper.findMinifyReplaceTags(html, 'section.fusion-tb-header', minifyOptions)
     html = helper.findMinifyReplaceTags(html, 'section.fusion-tb-footer', minifyOptions)
 
+    // Add in require meta tags for SEO, remove duplicate meta tags, and cleaning up the head element
     html = helper.requiredTags(html)
 
     html = helper.addKeywords(html, 'a')

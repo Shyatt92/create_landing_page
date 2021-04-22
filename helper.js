@@ -22,13 +22,14 @@ const requiredMetaTags = [
   ]
 
 
-
+// Format HTML
 const format = (data) => {
-  const prettyHTML = pretty(data, { ocd: true }/*, ' '.repeat(4), 1000000*/)
+  const prettyHTML = pretty(data, { ocd: true })
 
   return prettyHTML.toString()
 }
 
+// Find first Style tag and capture ID attribute and contained CSS
 const findStyle = (data) => {
   const $ = cheerio.load(data)
   const id = $('style').attr('id')
@@ -42,6 +43,7 @@ const findStyle = (data) => {
   return result
 }
 
+// Count all Style tags in HTML document
 const countTags = (data, tag) => {
   const $ = cheerio.load(data)
   const count = $(tag).length
@@ -49,6 +51,7 @@ const countTags = (data, tag) => {
   return count
 }
 
+// Replace first found Style Tag with link tag to given .css file
 const replaceStyleTag = (data, styleObj) => {
   const $ = cheerio.load(data)
   const link = `<link rel='stylesheet' ${styleObj.id? `id='${styleObj.id}'`: ''} type='text/css' href='${styleObj.filePath}' media='all' />`
@@ -57,6 +60,7 @@ const replaceStyleTag = (data, styleObj) => {
   return $.html()
 }
 
+// Find all given tags and either remove or replace with a placeholder div element
 const findAndRemoveTags = (data, tag) => {
   const $ = cheerio.load(data)
   let tags
@@ -76,6 +80,7 @@ const findAndRemoveTags = (data, tag) => {
   return [ $.html(), found ]
 }
 
+// Reinsert new tags back into appropriate place in HTML
 const insertTags = (data, tag, tagsArray) => {
   const $ = cheerio.load(data)
 
@@ -91,10 +96,11 @@ const insertTags = (data, tag, tagsArray) => {
     }
   }
   
-
   return $.html()
 }
 
+
+// Function to combine finding, minifying, and reinserting a given tag
 const findMinifyReplaceTags = (data, tag, minifyOptions = undefined) => {
   let tagsArray
 
@@ -114,34 +120,41 @@ const findMinifyReplaceTags = (data, tag, minifyOptions = undefined) => {
   return data
 }
 
+// Count all .js scripts in HTML document that do not have SRC attributes
 const scriptCount = (data) => {
   const $ = cheerio.load(data)
-  const count = $('script').not('[src]').not('[type="application/ld+json"]').length
+  const count = $('script').not('[src]').not('[type="application/ld+json"]').not('script:contains("gtag")').length
 
   return count
 }
 
+// Find first script tag in HTML document that does not have SRC attribute
 const findScripts = (data) => {
   const $ = cheerio.load(data)
 
-  return $('script').not('[src]').not('[type="application/ld+json"]').html()
+  return $('script').not('[src]').not('[type="application/ld+json"]').not('script:contains("gtag")').html()
 }
 
+// Edit first instance of script tag with new SRC attribute, and remove contained JS code
 const replaceScripts = (data, src) => {
   const $ = cheerio.load(data)
 
-  $('script').not('[src]').not('[type="application/ld+json"]').first().html('')
-  $('script').not('[src]').not('[type="application/ld+json"]').first().attr('src', src)
+  $('script').not('[src]').not('[type="application/ld+json"]').not('script:contains("gtag")').first().html('')
+  $('script').not('[src]').not('[type="application/ld+json"]').not('script:contains("gtag")').first().attr('src', src)
 
   return $.html()
 }
 
+// Add in required meta tags for SEO, remove duplicate meta tags, and cleaning up the head element
 const requiredTags = (data) => {
   const $ = cheerio.load(data)
 
   let title = $('title').html()
   let description = $('meta[name="description"]').attr('content')
 
+  $('meta[property="og:url"]').remove()
+  $('link[rel="canonical"]').remove()
+  $('meta[name="generator"]').remove()
   $('meta[content="text/html; charset=utf-8"]').remove()
   $('meta[name="viewport"]').remove()
   $('meta[name="robots"]').remove()
@@ -192,6 +205,7 @@ const requiredTags = (data) => {
   return $.html()
 }
 
+// Add [keyword] to alt and title attribute of given tag
 const addKeywords = (data, tag) => {
   const $ = cheerio.load(data)
 
