@@ -2,6 +2,7 @@ const scrape = require('website-scraper')
 const fsHelper = require('./fsHelper')
 const helper = require('./helper')
 const prompt = require('prompt-sync')()
+const home = require('os').homedir()
 
 // Remove Directory for Testing
 const { rmdirSync } = require('fs')
@@ -11,7 +12,7 @@ const downloadDirectory = prompt('Pleaser enter folder name to be saved to: ')
 
 let options = {
   urls: [url],
-  directory: `~/Downloads/${downloadDirectory}`
+  directory: `${home}\\Downloads\\${downloadDirectory}`
 }
 
 const htmlPath = `${options.directory}/index.html`
