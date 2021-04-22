@@ -11,7 +11,7 @@ const downloadDirectory = prompt('Pleaser enter folder name to be saved to: ')
 
 let options = {
   urls: [url],
-  directory: `/home/stephen/Downloads/${downloadDirectory}`
+  directory: `~/Downloads/${downloadDirectory}`
 }
 
 const htmlPath = `${options.directory}/index.html`
